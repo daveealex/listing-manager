@@ -26,8 +26,8 @@ Before running the app, you need AI model access:
 1. Download [LM Studio](https://lmstudio.ai) (free)
 2. Open LM Studio and load a vision model:
    - Click "Download Model"
-   - Search for: `llava-next-nearest-34b` or `qwen2.5-vl-7b-instruct`
-   - Download one of these models
+   - Search for: `llama3-llava-next-8b`
+   - Download this model (or similar llava-based vision model)
 3. Go to "Server" tab (left sidebar)
 4. Load the model you downloaded
 5. Click **"Start Server"** (green button at bottom)
@@ -69,8 +69,8 @@ platforms:
 
 From terminal (in `~/listing-manager` folder):
 
-```bash
-python main.py dashboard
+3. Start LM Server with model loaded:
+   python main.py dashboard (or just python test_connectivity.py first)
 ```
 
 Or just run normally first to test:
