@@ -148,22 +148,24 @@ Respond with valid JSON only."""
 class ProductParser:
     """Main parser class with fallback logic"""
     
-    def __init__(self, config: Dict[str, Any]):
-        self.config = config
-        self.lmstudio_client = LMStudioClient(
-            base_url=config.get("lmstudio_url", "http://localhost:1234/v1")
-        )
+    def __init__(self, ai_parser_config: Dict[str, Any]):
+        self.ai_config = ai_parser_config
         
-        # Model configuration
+        # Get LM Studio URL from config or use default
+        lmstudio_url = ai_parser_config.get("lmstudio_url", "http://localhost:1234/v1")
+        
+        self.lmstudio_client = LMStudioClient(base_url=lmstudio_url)
+        
+        # Model configuration - use ai_parser_config variable name
         self.models = {
-            "primary": config.get("models", {}).get("primary", "llava-next-nearest-34b"),
-            "fast": config.get("models", {}).get("fast", "qwen2.5-vl-7b-instruct")
+            "primary": ai_parser_config.get("models", {}).get("primary", "llama3-llava-next-8b"),
+            "fast": ai_parser_config.get("models", {}).get("fast", "qwen2.5-vl-7b-instruct")
         }
         
         # Parameters
         self.params = {
-            "temperature": config.get("parameters", {}).get("temperature", 0.3),
-            "max_tokens": config.get("parameters", {}).get("max_tokens", 256)
+            "temperature": ai_parser_config.get("parameters", {}).get("temperature", 0.3),
+            "max_tokens": ai_parser_config.get("parameters", {}).get("max_tokens", 256)
         }
     
     def analyze(self, image_path: str) -> ProductAnalysis:
@@ -206,6 +208,6 @@ class ProductParser:
                 )
 
 
-def create_parser(config: Dict[str, Any]) -> ProductParser:
-    """Factory function to create parser from config"""
-    return ProductParser(config.get("ai_parser", {}))
+def create_parser(ai_parser_config: Dict[str, Any]) -> ProductParser:
+    """Factory function to create parser from ai_parser config dict"""
+    return ProductParser(ai_parser_config)
