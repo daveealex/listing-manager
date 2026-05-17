@@ -31,7 +31,7 @@ ai_parser:
   
   # Models to use for product analysis (adjust based on what you see in LM Studio)
   models:
-    primary: "llama3-llava-next-8b-gguf"  # Try this first - adjust if different name needed
+    primary: "llama3-llava-next-8b"  # Exact model name loaded in LM Studio
     fast: "qwen2.5-vl-7b-instruct"         # Fallback if primary fails
     
   # Model parameters (tune these in LM Studio or here)
