@@ -1,0 +1,65 @@
+# AI-Powered Multi-Platform Listing Manager
+# Configuration file for personal use (non-commercial)
+
+app:
+  name: "Listing Manager"
+  version: "0.1.0"
+  
+# Platform settings
+platforms:
+  ebay:
+    enabled: true
+    auto_relist_days: 30
+    max_listings_per_platform: 50
+    
+  poshmark:
+    enabled: true
+    auto_relist_days: 30
+    max_listings_per_platform: 100
+    
+  mercari:
+    enabled: true
+    auto_relist_days: 60
+    max_listings_per_platform: 100
+
+# AI Parser settings - LM Studio integration on AMD server
+ai_parser:
+  api_type: "lmstudio"
+  
+  # LM Studio local server URL (AMD machine IP)
+  lmstudio_url: "http://192.168.1.137:1234/v1"
+  
+  # Models to use for product analysis
+  models:
+    primary: "llama3-llava-next-8b-gguf"  # Model loaded in LM Studio on AMD machine
+    fast: "qwen2.5-vl-7b-instruct"         # Fallback if needed
+    
+  # Model parameters (tune these in LM Studio or here)
+  parameters:
+    temperature: 0.3        # Lower = more consistent extraction
+    top_p: 0.9
+    max_tokens: 256         # Enough for JSON output
+    n_gpu_layers: -1        # Load all layers to GPU (LM Studio auto-detects)
+    
+  # Confidence scoring
+  confidence_threshold: 0.75  # Flag items below this for manual review
+  
+# Content moderation settings
+moderation:
+  profanity_filter: true
+  allowed_categories: ["clothing", "books", "collectibles", "electronics", "media"]
+  
+# Folder scanning settings
+scanner:
+  input_folder: "./inventory/input"      # Drop new items here
+  processed_folder: "./inventory/processed"  # Moved here after analysis
+  failed_folder: "./inventory/failed"    # Items that need manual review
+  
+# Database settings (SQLite for simplicity)
+database:
+  path: "./data/listings.db"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "./logs/app.log"

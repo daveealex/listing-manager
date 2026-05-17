@@ -1,0 +1,19 @@
+# Listing Manager Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web framework & API
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+
+# HTTP client for LM Studio API
+requests>=2.31.0
+
+# File system monitoring
+watchdog>=4.0.0
+
+# Configuration loading
+pyyaml>=6.0
+
+# Optional: For production database later
+sqlalchemy>=2.0.0

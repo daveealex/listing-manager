@@ -1,0 +1,21 @@
+# Common profanity words to filter from product listings
+# Add custom words as needed - one per line
+# Lines starting with # are comments
+
+fuck
+shit
+damn
+ass
+bitch
+cunt
+piss
+crap
+bastard
+dick
+cock
+slut
+whore
+nigger
+nigga
+faggot
+fag
